@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <title>SSL Certificate Checker</title>
+        <link rel="stylesheet" href="static/style.css" />
+    </head>
+
+    <body>
+        <header>
+            <h1>SSL Certificate Checker</h1>
+        </header>
+
+        <main>
+            <form
+                action="http://localhost:5000/check"
+                method="post">
+                <input
+                    type="url"
+                    name="url"
+                    placeholder="https://example.com"
+                    autocomplete="url"
+                    pattern="https://.*"
+                    required />
+
+                <button type="submit">Check</button>
+            </form>
+        </main>
+    </body>
+</html>
