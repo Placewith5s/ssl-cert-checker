@@ -27,12 +27,13 @@ def main():
         }
 
         requests.get(url, verify=certifi.where(), proxies=proxies)
-        return render_template("result.html", result="SSL verification successful!", url=url)
+        return render_template("result.html", result="SSL verification successful ✅!", url=url)
     except requests.exceptions.SSLError as err:
         app.logger.warning(f"SSL verification failed! {err}")
-        return render_template("result.html", result="SSL verification failed!", url=url)
+        return render_template("result.html", result="SSL verification failed ❌!", url=url)
     except Exception as err:
         app.logger.error(f"Something went wrong! {err}")
+        return render_template("result.html", result="Something went wrong! ⚠️", url=url)
 
 if __name__ == '__main__':
     app.run()
