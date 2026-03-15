@@ -10,18 +10,19 @@ def home() -> str:
     return render_template("index.html")
 
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found(e) -> str:
     return render_template("404.html")
 @app.errorhandler(500)
-def internal_error(e):
+def internal_error(e) -> str:
     return render_template("500.html")
 
-def handle_self_url(url: str):
+def handle_self_url(url: str) -> None:
     if url == "https://cert-checker-1gbs.onrender.com/":
-        return render_template("result.html", result="Cannot check self!", url=url)
+        url = ""
+        app.logger.error("Cannot check self!")
 
 @app.route("/check", methods=["POST"])
-def main():
+def main() -> str:
     url: str = request.form.get("url")
 
     handle_self_url(url)
