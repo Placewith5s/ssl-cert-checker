@@ -16,9 +16,15 @@ def page_not_found(e):
 def internal_error(e):
     return render_template("500.html")
 
+def handle_self_url(url: str):
+    if url == "https://cert-checker-1gbs.onrender.com/":
+        return render_template("result.html", result="Cannot check self!", url=url)
+
 @app.route("/check", methods=["POST"])
 def main():
     url: str = request.form.get("url")
+
+    handle_self_url(url)
 
     try:
         proxies: dict[str, str] = {
